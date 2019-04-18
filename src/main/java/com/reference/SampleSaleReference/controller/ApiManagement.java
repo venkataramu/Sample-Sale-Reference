@@ -21,7 +21,6 @@ import com.reference.SampleSaleReference.repository.UserRespository;
 @RestController
 @RequestMapping("/api/")
 public class ApiManagement {
-	public static  int noOfItemsInSale = 5;
 	
 	@Autowired
 	UserRespository userRepository;
@@ -62,7 +61,6 @@ public class ApiManagement {
 				if(product.getSaleCount() > 0) {
 					message = "Congrats Your order Successfully Placed. "
 							+ "Your Item will be dispatched to this address "+ user.getAddress();
-					noOfItemsInSale--;
 					int value = product.getSaleCount();
 					value = value-1;
 					product.setSaleCount(value);
