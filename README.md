@@ -14,8 +14,10 @@ Please execute SampleSaleReferenceApplication.java to start the embeded Tomcat s
 Below are the URLS to purchase an item in flash sale
 
 1. POST API call to Register an User :
+
     URL : http://localhost:8080/api/users/register
     Method : POST
+    
     Request Body : {
                       "name": "Rajesh",
                       "emailId": "rajesh@gmail.com",
