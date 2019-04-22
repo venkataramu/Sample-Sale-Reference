@@ -11,8 +11,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import com.reference.SampleSaleReference.model.Product;
-import com.reference.SampleSaleReference.model.RegisterUser;
+import com.reference.SampleSaleReference.entity.Product;
+import com.reference.SampleSaleReference.entity.RegisterUser;
 import com.reference.SampleSaleReference.repository.OrderRepository;
 import com.reference.SampleSaleReference.repository.ProductRepository;
 import com.reference.SampleSaleReference.repository.RegisterUserRepository;

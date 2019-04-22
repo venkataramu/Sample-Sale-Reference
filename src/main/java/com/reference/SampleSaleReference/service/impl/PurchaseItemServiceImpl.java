@@ -1,13 +1,14 @@
 package com.reference.SampleSaleReference.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.reference.SampleSaleReference.model.Order;
-import com.reference.SampleSaleReference.model.Product;
-import com.reference.SampleSaleReference.model.RegisterUser;
+import com.reference.SampleSaleReference.entity.Order;
+import com.reference.SampleSaleReference.entity.Product;
+import com.reference.SampleSaleReference.entity.RegisterUser;
 import com.reference.SampleSaleReference.repository.OrderRepository;
 import com.reference.SampleSaleReference.repository.ProductRepository;
 import com.reference.SampleSaleReference.repository.RegisterUserRepository;
@@ -28,27 +29,28 @@ public class PurchaseItemServiceImpl implements PurchaseItemService{
 	@Override
 	public Order purchaseAnItem(long userId, long productId) {
 		LocalDateTime time = LocalDateTime.now();
-		RegisterUser registerUser = registerUserRepo.findById(userId).get();
-		if(registerUser == null) {
+		Optional<RegisterUser> registerUserOptional = registerUserRepo.findById(userId);
+		if(!registerUserOptional.isPresent()) {
 			throw new ApplicationException("User doesn't registered for Sale");
 		}
 		
-		Product product = productRepository.findById(productId).get();
-		if(product == null) {
-			throw new ApplicationException("This Product is not in Sale");
+		Optional<Product> productOptional = productRepository.findById(productId);
+		if(!productOptional.isPresent()) {
+			throw new ApplicationException("Product is not in Sale");
 		}
-		
+		Product product = productRepository.findById(productId).get();
 		if(time.isBefore(product.getSaleStartTime())) {
-			throw new ApplicationException("This Product Sale not yet started");
+			throw new ApplicationException("Product Sale not yet started");
 		}
 		if(time.isAfter(product.getSaleEndTime())) {
-			throw new ApplicationException("This Product sale is ended");
+			throw new ApplicationException("Product sale is ended");
 		}
 		int count = orderRepository.countByCreatedOnBetweenAndProduct(product.getSaleStartTime(), product.getSaleEndTime(), product);
 		if(count > product.getQuantityInSale()) {
 			throw new ApplicationException("Sale is Over .Items are not available");
 		}
 		
+		RegisterUser registerUser = registerUserRepo.findById(userId).get();
 		Order order = new Order(registerUser, product);
 		return orderRepository.save(order);
 	}

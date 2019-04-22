@@ -1,4 +1,4 @@
-package com.reference.SampleSaleReference.model;
+package com.reference.SampleSaleReference.entity;
 
 import java.time.LocalDateTime;
 

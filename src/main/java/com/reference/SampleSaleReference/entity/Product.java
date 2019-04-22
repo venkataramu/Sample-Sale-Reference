@@ -1,4 +1,4 @@
-package com.reference.SampleSaleReference.model;
+package com.reference.SampleSaleReference.entity;
 
 import java.time.LocalDateTime;
 
@@ -68,6 +68,9 @@ public class Product {
 		this.saleEndTime = saleEndTime;
 	}
 	
+	public Product() {
+		
+	}
 	
 	public Product(long productId, String name, long quantityInSale, LocalDateTime saleStartTime, LocalDateTime saleEndTime, LocalDateTime createdOn) {
 		this.productId = productId;

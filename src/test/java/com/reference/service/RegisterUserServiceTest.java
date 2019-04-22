@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import com.reference.SampleSaleReference.model.RegisterUser;
+import com.reference.SampleSaleReference.entity.RegisterUser;
 import com.reference.SampleSaleReference.repository.RegisterUserRepository;
 import com.reference.SampleSaleReference.service.impl.RegisterUserServiceImpl;
 import com.reference.SampleSaleReference.util.ApplicationException;

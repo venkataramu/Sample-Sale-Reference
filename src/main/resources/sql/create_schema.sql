@@ -1,33 +1,35 @@
 CREATE DATABASE IF NOT EXISTS flashsale;
 use flashsale;
 
-DROP TABLE IF EXISTS flashsale.users;
-create table sample.users(id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-name varchar(100) NOT NULL, 
-email varchar(100) NOT NULL, 
-phone BIGINT NOT NULL,
-address varchar(250));
-
 DROP TABLE IF EXISTS flashsale.registered_users;
-create table sample.registered_users(user_id BIGINT NOT NULL,
-registration_time TIMESTAMP);
+CREATE TABLE `registered_users` (
+  `user_id` bigint(20) NOT NULL,
+  `register_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `products` (
+  `product_id` bigint(20) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT NOW(),
+  `name` varchar(255) DEFAULT NULL,
+  `quantity_in_sale` bigint(20) NOT NULL,
+  `sale_end_time` datetime DEFAULT NULL,
+  `sale_start_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`product_id`)
+) ENGINE=InnoDB;
 
 
-DROP TABLE IF EXISTS flashsale.sales;
-create table sample.sales(id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-sale_name varchar(100) NOT NULL,
-sale_start_time TIMESTAMP,
-sale_end_time TIMESTAMP);
+CREATE TABLE `orders` (
+  `order_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_on` timestamp NOT NULL DEFAULT NOW(),
+  `product_id` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`order_id`),
+  CONSTRAINT `fk_key_userid` FOREIGN KEY (`user_id`) REFERENCES `registered_users` (`user_id`),
+  CONSTRAINT `fk_key_productid` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
+) ENGINE=InnoDB;
 
 
-DROP TABLE IF EXISTS flashsale.products;
-CREATE TABLE sample.products(product_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-name varchar(20) NOT NULL,
-quantity INT NOT NULL, 
-sale_start_time TIME,
-sale_end_time TIME); 
 
-DROP TABLE IF EXISTS flashsale.orders;
-CREATE TABLE sample.orders(id BIGINT NOT NULL PRIMARY KEY,
-product_id BIGINT NOT NULL,
-user_id BIGINT NOT NULL);
+
+

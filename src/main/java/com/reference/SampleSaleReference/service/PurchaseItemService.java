@@ -1,6 +1,6 @@
 package com.reference.SampleSaleReference.service;
 
-import com.reference.SampleSaleReference.model.Order;
+import com.reference.SampleSaleReference.entity.Order;
 
 public interface PurchaseItemService {
 	

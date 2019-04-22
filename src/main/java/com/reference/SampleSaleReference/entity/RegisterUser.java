@@ -1,4 +1,4 @@
-package com.reference.SampleSaleReference.model;
+package com.reference.SampleSaleReference.entity;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +14,10 @@ public class RegisterUser {
 	@Column(name = "user_id", unique = true, nullable = false)
 	private Long userId;
 	private LocalDateTime registerTime;
+	
+	public RegisterUser() {
+		
+	}
 	
 	public RegisterUser(long userId) {
 		this.userId = userId;

@@ -1,9 +1,11 @@
 package com.reference.SampleSaleReference.service.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.reference.SampleSaleReference.model.RegisterUser;
+import com.reference.SampleSaleReference.entity.RegisterUser;
 import com.reference.SampleSaleReference.repository.RegisterUserRepository;
 import com.reference.SampleSaleReference.service.RegisterUserService;
 import com.reference.SampleSaleReference.util.ApplicationException;
@@ -15,8 +17,8 @@ public class RegisterUserServiceImpl implements RegisterUserService {
 
 	@Override
 	public RegisterUser saveUser(long userId) {
-		RegisterUser registerUser = registerUserRepository.findById(userId).get();
-		if(registerUser == null) {
+		Optional<RegisterUser> registerUser = registerUserRepository.findById(userId);
+		if(registerUser.isPresent()) {
 			throw new ApplicationException("User already Registered");
 		}
 		return registerUserRepository.save(new RegisterUser(userId));

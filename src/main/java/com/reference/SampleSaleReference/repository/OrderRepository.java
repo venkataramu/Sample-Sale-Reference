@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.reference.SampleSaleReference.model.Order;
-import com.reference.SampleSaleReference.model.Product;
+import com.reference.SampleSaleReference.entity.Order;
+import com.reference.SampleSaleReference.entity.Product;
 
 public interface OrderRepository extends JpaRepository<Order, Integer>{
 	
