@@ -8,7 +8,7 @@ Assuming users are already available in the system
 
 1.Users need to register for flash sale
 
-2. Purchase an item in Flash Sale by Registered Users
+2.Purchase an item in Flash Sale by Registered Users
 
 ## Running  the Application 
 ---------------------------------------------
