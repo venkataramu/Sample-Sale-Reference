@@ -40,4 +40,5 @@ Below are the URLS to purchase an item in flash sale
                
      Posting an Successful message to Registered User from an API call.
      
-    
+ ## ER Diagram
+ ![erdiagram](https://user-images.githubusercontent.com/8840659/56484593-f14ea280-64ed-11e9-87ce-edabffce070b.png)
