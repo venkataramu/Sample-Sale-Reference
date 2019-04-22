@@ -56,7 +56,7 @@ public class PurchaseItemServiceTest {
 	
 	@Test(expected = ApplicationException.class)
 	public void testExecuteCheckBeforeSaleStart() {
-		productItem = new Product(productId, "xyz", 10, LocalDateTime.parse("2019-12-15T15:52:40.410"), LocalDateTime.parse("2020-04-17T15:52:40.410"), LocalDateTime.now());
+		productItem = new Product(productId, "xyz", 10, LocalDateTime.parse("2019-12-15T1:52:40.410"), LocalDateTime.parse("2020-04-17T15:52:40.410"), LocalDateTime.now());
 		Optional<Product> product = Optional.of(productItem);
 		Mockito.when(registerUserRepo.findById(userId)).thenReturn(Optional.of(new RegisterUser(userId)));
 		Mockito.when(productRepository.findById(productId)).thenReturn(product);
