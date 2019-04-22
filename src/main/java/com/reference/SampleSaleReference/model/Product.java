@@ -1,46 +1,81 @@
 package com.reference.SampleSaleReference.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name="products")
+@Table(name="products", schema="flashsale")
 @EntityListeners(AuditingEntityListener.class)
-public class Product {  
-	private long id;
-	private String name;
-	private int saleCount;
+public class Product { 
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	public long getId() {
-		return id;
+	@Column(name="product_id", unique=true, nullable = false)
+	private long productId;
+	
+	private String name;
+	
+	private long quantityInSale;
+	
+	private LocalDateTime saleStartTime;
+	
+	private LocalDateTime saleEndTime;
+	
+	private LocalDateTime createdOn;
+	
+	
+	public long getProductId() {
+		return productId;
 	}
-	public void setId(long id) {
-		this.id = id;
+	public void setProductId(long productId) {
+		this.productId = productId;
 	}
-	@Column(name="name", nullable=false)
+	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
-	@Column(name="sale_count", nullable=false)
-	public int getSaleCount() {
-		return saleCount;
+	
+	
+	public long getQuantityInSale() {
+		return quantityInSale;
 	}
-	public void setSaleCount(int saleCount) {
-		this.saleCount = saleCount;
+	public void setQuantityInSale(long quantityInSale) {
+		this.quantityInSale = quantityInSale;
 	}
 	
 	
+	public LocalDateTime getSaleStartTime() {
+		return saleStartTime;
+	}
+	public void setSaleStartTime(LocalDateTime saleStartTime) {
+		this.saleStartTime = saleStartTime;
+	}
+	
+	public LocalDateTime getSaleEndTime() {
+		return saleEndTime;
+	}
+	public void setSaleEndTime(LocalDateTime saleEndTime) {
+		this.saleEndTime = saleEndTime;
+	}
+	
+	
+	public Product(long productId, String name, long quantityInSale, LocalDateTime saleStartTime, LocalDateTime saleEndTime, LocalDateTime createdOn) {
+		this.productId = productId;
+		this.name = name;
+		this.quantityInSale = quantityInSale;
+		this.saleStartTime = saleStartTime;
+		this.saleEndTime = saleEndTime;
+		this.createdOn = createdOn;
+	}
 
 }
