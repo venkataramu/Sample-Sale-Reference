@@ -27,7 +27,7 @@ public class PurchaseManagementAPI {
 			Response response = new Response("Success", order);
 			return new ResponseEntity<Response>(response, HttpStatus.OK);
 		} catch(ApplicationException appExec) {
-			Response response = new Response("Failed", appExec);
+			Response response = new Response("Failed", appExec.getMessage());
 			return new ResponseEntity<Response>(response, HttpStatus.ACCEPTED);
 		}
 		
