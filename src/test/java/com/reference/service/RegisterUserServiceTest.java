@@ -32,7 +32,7 @@ public class RegisterUserServiceTest {
 	@Test(expected = ApplicationException.class)
 	public void testExecuteCheckUserAlreadyRegistered() {
 		Mockito.when(registerUserRepo.findById(userId)).thenReturn(Optional.of(new RegisterUser(userId)));
-		registerService.saveUser(userId);
+		registerService.saveRegisterUser(userId);
 	}
 
 

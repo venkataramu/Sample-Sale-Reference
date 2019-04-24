@@ -3,6 +3,8 @@ package com.reference.SampleSaleReference.service.impl;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,13 +29,14 @@ public class PurchaseItemServiceImpl implements PurchaseItemService{
 	OrderRepository orderRepository;
 
 	@Override
+	@Transactional
 	public Order purchaseAnItem(long userId, long productId) {
 		LocalDateTime time = LocalDateTime.now();
 		Optional<RegisterUser> registerUserOptional = registerUserRepo.findById(userId);
 		if(!registerUserOptional.isPresent()) {
 			throw new ApplicationException("User doesn't registered for Sale");
 		}
-		
+
 		Optional<Product> productOptional = productRepository.findById(productId);
 		if(!productOptional.isPresent()) {
 			throw new ApplicationException("Product is not in Sale");
@@ -49,7 +52,7 @@ public class PurchaseItemServiceImpl implements PurchaseItemService{
 		if(count > product.getQuantityInSale()) {
 			throw new ApplicationException("Sale is Over .Items are not available");
 		}
-		
+
 		RegisterUser registerUser = registerUserRepo.findById(userId).get();
 		Order order = new Order(registerUser, product);
 		return orderRepository.save(order);

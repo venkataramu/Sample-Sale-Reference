@@ -16,7 +16,7 @@ public class RegisterUserServiceImpl implements RegisterUserService {
 	RegisterUserRepository registerUserRepository;
 
 	@Override
-	public RegisterUser saveUser(long userId) {
+	public RegisterUser saveRegisterUser(long userId) {
 		Optional<RegisterUser> registerUser = registerUserRepository.findById(userId);
 		if(registerUser.isPresent()) {
 			throw new ApplicationException("User already Registered");

@@ -4,6 +4,6 @@ import com.reference.SampleSaleReference.entity.RegisterUser;
 
 public interface RegisterUserService {
 	
-	public RegisterUser saveUser(long userId); 
+	public RegisterUser saveRegisterUser(long userId); 
 
 }
