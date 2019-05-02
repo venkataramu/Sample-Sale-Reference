@@ -1,5 +1,6 @@
 package com.reference.SampleSaleReference.entity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -13,19 +14,17 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name="products", schema="flashsale")
 @EntityListeners(AuditingEntityListener.class)
-public class Product { 
+public class Product implements Serializable {  
 	
+	private static final long serialVersionUID = 7207038706386351819L;
+
 	@Id
 	@Column(name="product_id", unique=true, nullable = false)
 	private long productId;
 	
 	private String name;
 	
-	private long quantityInSale;
-	
-	private LocalDateTime saleStartTime;
-	
-	private LocalDateTime saleEndTime;
+	private long saleId;
 	
 	private LocalDateTime createdOn;
 	
@@ -45,40 +44,23 @@ public class Product {
 		this.name = name;
 	}
 	
-	
-	public long getQuantityInSale() {
-		return quantityInSale;
-	}
-	public void setQuantityInSale(long quantityInSale) {
-		this.quantityInSale = quantityInSale;
+	public long getSaleId() {
+		return saleId;
 	}
 	
-	
-	public LocalDateTime getSaleStartTime() {
-		return saleStartTime;
-	}
-	public void setSaleStartTime(LocalDateTime saleStartTime) {
-		this.saleStartTime = saleStartTime;
-	}
-	
-	public LocalDateTime getSaleEndTime() {
-		return saleEndTime;
-	}
-	public void setSaleEndTime(LocalDateTime saleEndTime) {
-		this.saleEndTime = saleEndTime;
+	public void setSaleId(long saleId) {
+		this.saleId = saleId;
 	}
 	
 	public Product() {
 		
 	}
 	
-	public Product(long productId, String name, long quantityInSale, LocalDateTime saleStartTime, LocalDateTime saleEndTime, LocalDateTime createdOn) {
+	public Product(long productId, String name, LocalDateTime createdOn, long saleId) {
 		this.productId = productId;
 		this.name = name;
-		this.quantityInSale = quantityInSale;
-		this.saleStartTime = saleStartTime;
-		this.saleEndTime = saleEndTime;
 		this.createdOn = createdOn;
+		this.saleId = saleId;
 	}
 
 }

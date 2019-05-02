@@ -1,6 +1,6 @@
 package com.reference.SampleSaleReference.util;
 
-public class Response{
+public class Response{ 
 	private String errorDescription;
 	private Object data;
 	

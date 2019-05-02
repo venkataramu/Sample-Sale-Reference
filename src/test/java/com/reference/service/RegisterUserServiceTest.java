@@ -21,6 +21,7 @@ public class RegisterUserServiceTest {
 	RegisterUserServiceImpl registerService;
 	
 	long userId = 12345;
+	long saleId = 1111;
 	
 	@Before
 	public void setUp() {
@@ -31,8 +32,8 @@ public class RegisterUserServiceTest {
 	
 	@Test(expected = ApplicationException.class)
 	public void testExecuteCheckUserAlreadyRegistered() {
-		Mockito.when(registerUserRepo.findById(userId)).thenReturn(Optional.of(new RegisterUser(userId)));
-		registerService.saveRegisterUser(userId);
+		Mockito.when(registerUserRepo.findById(userId)).thenReturn(Optional.of(new RegisterUser(userId,saleId)));
+		registerService.saveUserForSale(userId, saleId);
 	}
 
 

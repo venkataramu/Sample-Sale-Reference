@@ -6,5 +6,5 @@ import com.reference.SampleSaleReference.entity.RegisterUser;
 
 public interface RegisterUserRepository extends JpaRepository<RegisterUser, Long> {
 	
-	
+	public RegisterUser findRegisterUserByUserIdAndSaleId(long userId, long saleId);
 }

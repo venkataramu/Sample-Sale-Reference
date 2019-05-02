@@ -3,9 +3,9 @@ package com.reference.SampleSaleReference.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.reference.SampleSaleReference.entity.Order;
@@ -14,14 +14,14 @@ import com.reference.SampleSaleReference.util.ApplicationException;
 import com.reference.SampleSaleReference.util.Response;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/purchase")
 public class PurchaseManagementAPI {
 	
 	@Autowired
 	PurchaseItemService purchaseService;
 	
-	@PostMapping("/purchase")
-	public ResponseEntity<Response> purchaseAnItem(@RequestParam("userId") long userId, @RequestParam("productId") long productId) {
+	@PostMapping("/users/{userId}/products/{productId}")
+	public ResponseEntity<Response> purchaseAnItem(@PathVariable("userId") long userId, @PathVariable("productId") long productId) {
 		try {
 			Order order = purchaseService.purchaseAnItem(userId, productId);
 			Response response = new Response("Success", order);

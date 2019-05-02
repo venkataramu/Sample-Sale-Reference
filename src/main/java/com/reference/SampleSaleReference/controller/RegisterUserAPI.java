@@ -14,20 +14,21 @@ import com.reference.SampleSaleReference.util.ApplicationException;
 import com.reference.SampleSaleReference.util.Response;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/register")
 public class RegisterUserAPI {
 	@Autowired
 	RegisterUserService service;
 
-	@PostMapping("/register/{userId}")
-	public ResponseEntity<Response> registerUser(@PathVariable long userId) {
+	@PostMapping("/users/{userId}/sale/{saleId}/flashsale")
+	public ResponseEntity<Response> registerUser(@PathVariable long userId,
+			@PathVariable long saleId) {
 		try {
-			RegisterUser registerUser = service.saveRegisterUser(userId);
+			RegisterUser registerUser = service.saveUserForSale(userId, saleId);
 			Response response = new Response("Success", registerUser);
-			return new ResponseEntity<Response>(response,HttpStatus.OK);
+			return new ResponseEntity<>(response,HttpStatus.OK);
 		} catch(ApplicationException appException) {
 			Response response = new Response("Failed", appException.getMessage());
-			return new ResponseEntity<Response>(response,HttpStatus.ACCEPTED);
+			return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
 		}
 	}
 	
